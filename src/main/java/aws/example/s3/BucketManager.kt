@@ -22,14 +22,14 @@ class BucketManager(region: Regions = Regions.DEFAULT_REGION) {
     fun findAllBucketNames(): List<String> {
         return s3.listBuckets()
                 .stream()
-                .map { b -> b.name }
+                .map { it.name }
                 .collect(Collectors.toList())
     }
 
     fun findBucket(bucketName: String): Optional<Bucket> {
         return s3.listBuckets()
                 .stream()
-                .filter{ b -> b.name == bucketName }
+                .filter{ it.name == bucketName }
                 .findAny()
     }
 
